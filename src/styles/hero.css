@@ -1,0 +1,49 @@
+/* Contenedor principal */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  /* Mantengo la clase que ya usabas */
+}
+
+/* Oscurecido */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* Contenido centrado */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 48rem;
+  padding: 0 1.5rem;
+}
+
+/* Título rojo */
+.hero-title {
+  font-size: 4rem;
+  color: var(--utc-red, #ff2b2b);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Subtítulo */
+.hero-subtitle {
+  color: #d1d1d1;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* Contenedor para botones (por si luego activás los links) */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

@@ -1,0 +1,122 @@
+/* --- SECTION --- */
+.b-section {
+  padding: 6rem 1.5rem;
+  color: #e5e7eb;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .b-section {
+    padding: 6rem 3rem;
+  }
+}
+
+/* --- TITLE --- */
+.b-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 5rem;
+  color: #ff2d2d;
+  text-shadow: 0 0 12px rgba(255, 0, 0, 0.35);
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .b-title {
+    font-size: 3rem;
+  }
+}
+
+/* --- GRID --- */
+.b-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .b-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .b-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- CARD --- */
+.b-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 1.25rem;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.4)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  transition: all 0.3s ease;
+}
+
+.b-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.25);
+  border-color: rgba(120, 0, 0, 0.5);
+}
+
+/* --- CARD CONTENT --- */
+.b-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.b-card-text {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  line-height: 1.5;
+}
+
+/* --- CARD BOTTOM RED LINE --- */
+.b-card-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(180, 0, 0, 0.6),
+    transparent
+  );
+}
+
+/* --- NOTE --- */
+.b-note {
+  margin-top: 4rem;
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+  font-size: 0.75rem;
+}

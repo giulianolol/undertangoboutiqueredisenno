@@ -1,0 +1,114 @@
+/* SECCIÓN */
+.historia-section {
+  padding: 8rem 0;
+  background: #000;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* TÍTULO */
+.historia-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 6rem;
+  letter-spacing: -0.03em;
+}
+
+/* CONTENEDOR SCROLL */
+.historia-container {
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+  transition: all 0.5s ease-out;
+}
+
+/* FILA INTERNA */
+.historia-inner {
+  display: flex;
+  gap: 10rem;
+  padding: 5rem 10rem;
+  width: max-content;
+  transform-style: preserve-3d;
+}
+
+/* TARJETAS */
+.historia-card {
+  width: 24rem;
+  padding: 2.5rem;
+  border-radius: 1.7rem;
+  background: rgba(24, 24, 27, 0.8);
+  border: 1px solid #2d2d2d;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  position: relative;
+  transition: all 0.7s ease-out;
+  transform: translateZ(0);
+  opacity: 0.7;
+  scale: 0.95;
+}
+
+.historia-card.active {
+  border-color: #ff3b6a;
+  box-shadow: 0 0 35px rgba(255, 60, 87, 0.4);
+  scale: 1.1;
+  opacity: 1;
+}
+
+/* AÑO */
+.historia-year {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #f5a3b0;
+  transition: all 0.7s ease-out;
+}
+
+.historia-year.year-active {
+  color: #ff3b6a;
+  text-shadow: 0 0 20px rgba(255, 60, 87, 0.7);
+}
+
+/* TEXTO */
+.historia-text {
+  color: #d4d4d4;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+/* PUNTO (lo dejo porque estaba en tu diseño, pero no genera línea) */
+.historia-dot {
+  position: absolute;
+  top: 50%;
+  right: -1rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: #7a1a26;
+  box-shadow: 0 0 10px rgba(244,63,94,0.3);
+  transform: translateY(-50%);
+  transition: all 0.7s ease-out;
+}
+
+.historia-dot.dot-active {
+  background: #ff3b6a;
+  box-shadow: 0 0 25px 8px rgba(244,63,94,0.8);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .historia-inner {
+    gap: 4rem;
+    padding: 3rem 4rem;
+  }
+  .historia-card {
+    width: 18rem;
+    padding: 1.8rem;
+    scale: 1 !important;
+  }
+  .historia-year {
+    font-size: 2.7rem;
+  }
+}

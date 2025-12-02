@@ -1,0 +1,26 @@
+.footer {
+  background: black;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: #6b6b6b;
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: #888888;
+}
+
+.footer-nav {
+  margin-top: 1rem;
+}
+
+.footer-nav .footer-link {
+  margin: 0 0.75rem;
+  color: #8a8a8a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav .footer-link:hover {
+  color: white;
+}

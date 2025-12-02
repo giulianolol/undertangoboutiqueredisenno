@@ -1,0 +1,145 @@
+/* --- HEADER WRAPPER --- */
+.u-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(136, 0, 0, 0.2);
+}
+
+/* --- HEADER INNER CONTAINER --- */
+.u-header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- LOGO --- */
+.u-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.u-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #ef4444; /* rojo */
+}
+
+/* --- DESKTOP NAV --- */
+.u-nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.u-nav-link {
+  color: #d1d5db;
+  transition: 0.2s ease;
+}
+
+.u-nav-link:hover {
+  color: #ffffff;
+}
+
+.u-nav-buy {
+  background: #dc2626;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+  color: white;
+}
+
+.u-nav-buy:hover {
+  background: #b91c1c;
+}
+
+/* --- MOBILE TOGGLE --- */
+.u-mobile-btn {
+  display: none;
+  background: none;
+  color: #e5e7eb;
+  transition: 0.2s ease;
+}
+
+.u-mobile-btn:hover {
+  color: #ffffff;
+}
+
+.u-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* --- MOBILE MENU --- */
+.u-nav-mobile {
+  display: none;
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .u-nav-desktop {
+    display: none;
+  }
+
+  .u-mobile-btn {
+    display: block;
+  }
+
+  .u-nav-mobile {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(136, 0, 0, 0.3);
+    padding: 20px;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  .u-nav-mobile-link {
+    color: #d1d5db;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    transition: 0.2s ease;
+  }
+
+  .u-nav-mobile-link:hover {
+    color: #ffffff;
+  }
+
+  .u-nav-mobile-buy {
+    background: #dc2626;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    transition: 0.2s ease;
+  }
+
+  .u-nav-mobile-buy:hover {
+    background: #b91c1c;
+  }
+}
+
+/* --- ANIMATION --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

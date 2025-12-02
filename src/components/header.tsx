@@ -1,24 +1,56 @@
 "use client";
 import Link from "next/link";
-import Reveal from "./reveal";
+import { useState } from "react";
+import "../styles/header.css";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-red-900/20">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <header className="u-header">
+      <div className="u-header-container">
+        {/* LOGO */}
         <Link href="/">
-          <div className="flex items-center gap-3">
-            {/* <img src="/logo.svg" alt="" className="h-8" /> */}
-            <span className="font-display text-xl text-red-500">UnderTangoCoin</span>
+          <div className="u-logo">
+            <span className="u-logo-text">UnderTangoCoin</span>
           </div>
         </Link>
 
-        <nav className="flex items-center gap-4">
-          <a href="#ecosistema" className="text-gray-300 hover:text-white">Ecosistema</a>
-          <a href="#valor" className="text-gray-300 hover:text-white">Valor</a>
-          <a href="#buy" className="bg-red-600 hover:bg-redDark px-4 py-2 rounded-lg font-semibold shadow-sm">Comprar</a>
+        {/* DESKTOP NAV */}
+        <nav className="u-nav-desktop">
+          <a href="#ecosistema" className="u-nav-link">Ecosistema</a>
+          <a href="#valor" className="u-nav-link">Valor</a>
+          <a href="#buy" className="u-nav-buy">Comprar</a>
         </nav>
+
+        {/* MOBILE BUTTON */}
+        <button className="u-mobile-btn" onClick={() => setOpen(!open)}>
+          {open ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="u-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="u-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
       </div>
+
+      {/* MOBILE NAV */}
+      {open && (
+        <div className="u-nav-mobile">
+          <a href="#ecosistema" className="u-nav-mobile-link" onClick={() => setOpen(false)}>
+            Ecosistema
+          </a>
+          <a href="#valor" className="u-nav-mobile-link" onClick={() => setOpen(false)}>
+            Valor
+          </a>
+          <a href="#buy" className="u-nav-mobile-buy" onClick={() => setOpen(false)}>
+            Comprar
+          </a>
+        </div>
+      )}
     </header>
   );
 }

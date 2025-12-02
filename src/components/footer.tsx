@@ -1,13 +1,18 @@
+import "../styles/footer.css";
+
 export default function Footer() {
   return (
-    <footer className="py-10 bg-black text-center text-gray-500">
-      <p>© {new Date().getFullYear()} UnderTango — Todos los derechos reservados.</p>
-      <nav className="mt-4 space-x-4">
-        <a href="#historia" className="hover:text-white">Historia</a>
-        <a href="#servicios" className="hover:text-white">Qué hacemos</a>
-        <a href="#ecosistema" className="hover:text-white">Ecosistema</a>
-        <a href="#beneficios" className="hover:text-white">Beneficios</a>
-        <a href="#contacto" className="hover:text-white">Contacto</a>
+    <footer className="footer">
+      <p className="footer-text">
+        © {new Date().getFullYear()} UnderTango — Todos los derechos reservados.
+      </p>
+
+      <nav className="footer-nav">
+        <a href="#historia" className="footer-link">Historia</a>
+        <a href="#servicios" className="footer-link">Qué hacemos</a>
+        <a href="#ecosistema" className="footer-link">Ecosistema</a>
+        <a href="#beneficios" className="footer-link">Beneficios</a>
+        <a href="#contacto" className="footer-link">Contacto</a>
       </nav>
     </footer>
   );

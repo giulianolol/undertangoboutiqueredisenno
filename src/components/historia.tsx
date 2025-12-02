@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Reveal from "./reveal";
+import "../styles/historia.css";
 
 export default function Historia() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [lineY, setLineY] = useState<number>(0);
@@ -18,7 +20,7 @@ export default function Historia() {
     { year: "2025", text: "Lanzamiento de Moda UnderTango para expandir nuestra pasión." },
   ];
 
-  // AUTO SCROLL MUCHO MÁS SUAVE
+  /* AUTO SCROLL */
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -26,9 +28,8 @@ export default function Historia() {
     let pos = 0;
 
     const animate = () => {
-      pos += 0.35; // mucho más suave
+      pos += 0.35;
       const limit = container.scrollWidth / 2;
-
       if (pos >= limit) pos = 0;
 
       container.scrollLeft = pos;
@@ -38,132 +39,75 @@ export default function Historia() {
     animate();
   }, []);
 
+  /* CALCULAR LÍNEA CENTRAL */
   useEffect(() => {
-  if (cardsRef.current[0]) {
-    const card = cardsRef.current[0];
+    if (cardsRef.current[0]) {
+      const card = cardsRef.current[0];
+      const centerY = card.offsetTop + card.clientHeight / 0.509;
+      setLineY(centerY);
+    }
+  }, []);
 
-    // Calculamos el centro vertical exacto de la tarjeta
-    const centerY = card.offsetTop + card.clientHeight / 0.509;
-
-    setLineY(centerY);
-  }
-}, []);
-
-  // DETECTAR CUÁL EVENTO ESTÁ EN EL CENTRO
+  /* DETECTAR TARJETA ACTIVA */
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const checkCenter = () => {
+    const check = () => {
       const center = container.scrollLeft + container.clientWidth / 2;
-
-      let closestIndex = null;
+      let closestIndex: number | null = null;
       let closestDist = Infinity;
 
-      cardsRef.current.forEach((card, index) => {
+      cardsRef.current.forEach((card, idx) => {
         if (!card) return;
-
         const cardCenter = card.offsetLeft + card.clientWidth / 2;
         const dist = Math.abs(cardCenter - center);
-
         if (dist < closestDist) {
           closestDist = dist;
-          closestIndex = index;
+          closestIndex = idx;
         }
       });
 
       setActiveIndex(closestIndex);
-      requestAnimationFrame(checkCenter);
+      requestAnimationFrame(check);
     };
 
-    checkCenter();
+    check();
   }, []);
 
   return (
-    <section className="py-32 bg-black text-white relative overflow-hidden z-0">
-
-      {/* TÍTULO */}
+    <section className="historia-section">
       <Reveal direction="left" intensity={90}>
-        <h2 className="text-5xl md:text-7xl font-black text-center mb-24 tracking-tight">
-          Nuestra Historia
-        </h2>
+        <h2 className="historia-title">Nuestra Historia</h2>
       </Reveal>
 
-<div
-  className="
-    absolute left-0 right-0
-    h-[4px]
-    bg-gradient-to-r from-rose-900/20 via-rose-600/70 to-rose-900/20
-    pointer-events-none
-    z-[1]
-  "
-  style={{
-    top: lineY,
-    transform: "translateY(-50%)",
-  }}
-/>
-
-
-      {/* CONTENEDOR SCROLLEABLE */}
+      {/* LÍNEA CENTRAL */}
       <div
-        ref={containerRef}
-        className="relative w-full overflow-hidden select-none z-20 transition-all duration-500 ease-out"
-      >
-        <div
-          className="flex gap-40 px-40 py-20 w-max transform-gpu"
-          style={{ transformStyle: "preserve-3d" }}
-        >
+        className="historia-line"
+        style={{ top: lineY, transform: "translateY(-50%)" }}
+      />
+
+      {/* CONTENEDOR */}
+      <div ref={containerRef} className="historia-container">
+        <div className="historia-inner">
           {[...timeline, ...timeline].map((item, i) => {
             const depth = (i % timeline.length) * -120;
 
             return (
               <div
                 key={i}
-                ref={(el) => {
-                  cardsRef.current[i] = el as HTMLDivElement;
-                }}
-                className={`
-                  relative w-96 p-10 rounded-3xl border shadow-2xl
-                  transition-all duration-700 ease-out
-                  bg-zinc-900/80 border-zinc-800
-                  z-20
-
-                  ${
-                    activeIndex === i % timeline.length
-                      ? "scale-110 shadow-rose-500/40 border-rose-500/80"
-                      : "scale-95 opacity-70"
-                  }
-                `}
+                ref={(el) => { cardsRef.current[i] = el;}}
+                className={`historia-card ${activeIndex === i % timeline.length ? "active" : ""}`}
                 style={{ transform: `translateZ(${depth}px)` }}
               >
-                <h3
-                  className={`
-                    text-5xl font-extrabold mb-6 transition-all duration-700 ease-out
-                    ${
-                      activeIndex === i % timeline.length
-                        ? "text-rose-500 drop-shadow-[0_0_20px_rgba(244,63,94,0.7)]"
-                        : "text-rose-300"
-                    }
-                  `}
-                >
+                <h3 className={`historia-year ${activeIndex === i % timeline.length ? "year-active" : ""}`}>
                   {item.year}
                 </h3>
 
-                <p className="text-lg text-zinc-300 leading-snug">
-                  {item.text}
-                </p>
+                <p className="historia-text">{item.text}</p>
 
-                {/* Glow del punto */}
                 <div
-                  className={`
-                    absolute top-1/2 -right-4 w-7 h-7 rounded-full transition-all duration-700 ease-out
-                    transform -translate-y-1/2
-                    ${
-                      activeIndex === i % timeline.length
-                        ? "bg-rose-500 shadow-[0_0_25px_8px_rgba(244,63,94,0.8)]"
-                        : "bg-rose-800 shadow-[0_0_10px_2px_rgba(244,63,94,0.3)]"
-                    }
-                  `}
+                  className={`historia-dot ${activeIndex === i % timeline.length ? "dot-active" : ""}`}
                 />
               </div>
             );
