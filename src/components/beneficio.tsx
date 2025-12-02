@@ -1,60 +1,81 @@
+import Reveal from "./reveal";
+
 export default function Beneficios() {
   return (
+    <Reveal direction="up" intensity={120} parallax>
     <section
       id="beneficios"
-      className="py-20 px-6 md:px-12 text-center text-gray-200"
+      className="py-24 px-6 md:px-12 text-gray-200 bg-black relative overflow-hidden"
     >
-      <h2 className="text-4xl font-display font-bold text-utc-red mb-16 drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]">
+      {/* TÍTULO */}
+      <h2 className="text-4xl md:text-5xl font-display font-bold text-center mb-20 text-utc-red drop-shadow-[0_0_12px_rgba(255,0,0,0.35)] tracking-tight">
         Beneficios para holders
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-10 max-w-6xl mx-auto">
+      {/* GRID PREMIUM */}
+      <div className="
+        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+        gap-10 max-w-6xl mx-auto
+      ">
         {[
-          "Acceso anticipado y precios preferenciales en shows.",
-          "Descuentos en clases grupales o privadas de tango.",
-          "Lanzamientos exclusivos de la línea de moda UnderTango.",
-          "Invitaciones a eventos VIP y experiencias únicas.",
-          "Participación en decisiones artísticas y de producción.",
-        ].map((text, i) => (
+          {
+            title: "Acceso anticipado",
+            text: "Ingresá antes que todos y obtené precios preferenciales en shows exclusivos."
+          },
+          {
+            title: "Descuentos en clases",
+            text: "Beneficios en clases grupales o privadas para seguir creciendo en el tango."
+          },
+          {
+            title: "Moda exclusiva",
+            text: "Acceso temprano a lanzamientos de Moda UnderTango que no se venden al público general."
+          },
+          {
+            title: "Eventos VIP",
+            text: "Invitaciones especiales a experiencias únicas solo para holders."
+          },
+          {
+            title: "Participación artística",
+            text: "Tu voto influye en decisiones creativas, shows y producciones futuras."
+          },
+          {
+            title: "Experiencia UnderTango",
+            text: "Viví la marca desde adentro, con regalos, sorpresas y trato prioritario."
+          },
+        ].map((item, i) => (
           <div
             key={i}
             className="
-              p-6 rounded-xl 
-              bg-black/40 
-              border border-white/5 
-              backdrop-blur-xl 
-              shadow-[0_0_10px_rgba(0,0,0,0.4)]
-              transition-all duration-300 ease-out
-              transform-gpu
-              opacity-0
-              animate-[fadeUp_0.7s_ease-out_forwards]
-              hover:scale-[1.06]
-              hover:shadow-[0_0_25px_rgba(255,0,0,0.45)]
-              hover:border-red-800/40
+              relative p-8 rounded-2xl
+              bg-gradient-to-b from-black/70 to-black/40
+              border border-white/10
+              backdrop-blur-xl
+              shadow-[0_0_20px_rgba(0,0,0,0.5)]
+              transition-all duration-300 hover:scale-[1.03]
+              hover:shadow-[0_0_30px_rgba(255,0,0,0.25)]
+              hover:border-red-900/50
+              flex flex-col gap-3
             "
-            style={{ animationDelay: `${i * 0.15}s` }}
           >
-            <p className="text-base leading-relaxed">{text}</p>
+            <h3 className="text-xl font-semibold text-white tracking-tight">
+              {item.title}
+            </h3>
+
+            <p className="text-sm leading-relaxed text-gray-300">
+              {item.text}
+            </p>
+
+            {/* Línea roja premium */}
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-700/60 to-transparent" />
           </div>
         ))}
       </div>
 
-      <p className="mt-10 text-gray-400 italic text-sm">
+      {/* NOTA FINAL */}
+      <p className="mt-16 text-gray-500 italic text-xs text-center">
         * Propuesta inicial — será formalizada por el equipo.
       </p>
-
-      <style>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-      `}</style>
     </section>
+    </Reveal>
   );
 }

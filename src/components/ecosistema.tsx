@@ -38,7 +38,7 @@ export default function Ecosistema() {
   ];
 
   return (
-    <Reveal direction="left" intensity={90} parallax>
+    <Reveal direction="right" intensity={90} parallax>
       <section
         id="ecosistema"
         className="
